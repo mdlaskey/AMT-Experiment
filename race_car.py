@@ -44,6 +44,8 @@ AllData = []
 controls = []
 reward = [] 
 states = []
+AllData = dict()
+CurrentData = dict()
 first = True
 supervisor = Supervisor()
 
@@ -98,11 +100,16 @@ def get_help():
 	IPython.embed()	
 	#Sort Data
 	data = dict(request.args)
+
+
+
+	key = data['undefined'][0]
 	state = np.array(data['undefined'][0:4], dtype=float)
 	control = np.array(data['undefined'][4:6], dtype=float)
 
 	#Get reward
 	r = supervisor.getCost(state)
+
 
 	states.append(state)
 	controls.append(control)
@@ -117,11 +124,15 @@ def get_help():
 		states.append(state)
 		controls.append(control)
 		reward.append(r)
+	CurrentData[key] = [states,controls,reward]
 
 
 @custom_code.route('/finish_trial')
 def finish_trial(): 
-	UserData.append([states,controls,reward])
+	data = dict(request.args)
+	key = data['undefined'][0]
+
+	CumData[key].append([states,controls,reward])
 	IPython.embed()
 
 
@@ -133,9 +144,11 @@ def get_stuff():
 
 @custom_code.route('/save_data')
 def save_data():
+
 	responses = dict(request.args)
-	total_data = [responses,UserData]
-	AllData.append(total_data)
+	key = data['undefined'][0]
+	total_data = [responses,CumData[key]]
+	AllData[key] = total_data
 	pickle.dump(AllData,open('AllData.p','wb'))
 	#IPython.embed()
 	
