@@ -1,8 +1,10 @@
 # this file imports custom routes into the experiment server
 import sys
+
 #sys.path.append('/Users/michaelluskey/Documents/RL/LFD/lapmaster1.1/')
 sys.path.append('/home/laskeymd/RL')
-from race_game_asst import RaceGame
+
+
 import IPython 
 import numpy as np
 from PIL import Image
@@ -54,42 +56,42 @@ def serve_pil_image(pil_img):
     
     return base64.b64encode(im_data.getvalue())
 
-#----------------------------------------------
-# example accessing data
-#----------------------------------------------
-@custom_code.route('/run_game')
-def run_game():
-	game = request.args['game']
-	coach = request.args['coach']
-	print coach
-	if(game == 'summer'):
-		#RaceGame.T = 1500
-		race_game = RaceGame(game = game, coach = 'false')
-		while race_game.running:
-			race_game.control_car()
-		trial = [coach,race_game.cost,race_game.inOil,race_game.controls,race_game.states]
-		UserData.append(trial)
-	elif(game == 'winter'):
-		#RaceGame.T = 500
-		if(coach == 'true'): 
-			for i in range(2):
-				race_game = RaceGame(game = game,coach='false')
-				while race_game.running:
-					race_game.control_car()
+# #----------------------------------------------
+# # example accessing data
+# #----------------------------------------------
+# @custom_code.route('/run_game')
+# def run_game():
+# 	game = request.args['game']
+# 	coach = request.args['coach']
+# 	print coach
+# 	if(game == 'summer'):
+# 		#RaceGame.T = 1500
+# 		race_game = RaceGame(game = game, coach = 'false')
+# 		while race_game.running:
+# 			race_game.control_car()
+# 		trial = [coach,race_game.cost,race_game.inOil,race_game.controls,race_game.states]
+# 		UserData.append(trial)
+# 	elif(game == 'winter'):
+# 		#RaceGame.T = 500
+# 		if(coach == 'true'): 
+# 			for i in range(2):
+# 				race_game = RaceGame(game = game,coach='false')
+# 				while race_game.running:
+# 					race_game.control_car()
 
-		for i in range(5):
-			race_game = RaceGame(game = game,coach=coach,roboCoach = rc)
-			while race_game.running:
-				race_game.control_car()
-			trial = [coach,race_game.cost,race_game.inOil,race_game.controls,race_game.states]
-			UserData.append(trial)
-	else:
-		#RaceGame.T = 500
-		race_game = RaceGame(game = 'winter',coach = 'false')
-		while race_game.running:
-				race_game.control_car()
-		trial = [coach,race_game.cost,race_game.inOil,race_game.controls,race_game.states]
-		UserData.append(trial)
+# 		for i in range(5):
+# 			race_game = RaceGame(game = game,coach=coach,roboCoach = rc)
+# 			while race_game.running:
+# 				race_game.control_car()
+# 			trial = [coach,race_game.cost,race_game.inOil,race_game.controls,race_game.states]
+# 			UserData.append(trial)
+# 	else:
+# 		#RaceGame.T = 500
+# 		race_game = RaceGame(game = 'winter',coach = 'false')
+# 		while race_game.running:
+# 				race_game.control_car()
+# 		trial = [coach,race_game.cost,race_game.inOil,race_game.controls,race_game.states]
+# 		UserData.append(trial)
 
 @custom_code.route('/get_help')
 def get_help():
@@ -142,4 +144,4 @@ def save_data():
 
 if __name__ == '__main__':
 	print "running"
-	custom_code.run()
+	custom_code.run(host='0.0.0.0')

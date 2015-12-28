@@ -35003,6 +35003,7 @@ TemplateNotFound: undefined
 2015-12-27 17:15:46,913 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
 2015-12-27 17:15:46,913 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
 2015-12-27 17:15:46,933 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+<<<<<<< HEAD
 2015-12-27 15:32:31,870 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
 2015-12-27 15:32:32,055 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
 2015-12-27 15:32:32,415 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
@@ -35021,3 +35022,57 @@ TemplateNotFound: undefined
 2015-12-27 15:35:41,890 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
 2015-12-27 15:35:41,904 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
 2015-12-27 15:35:41,921 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+=======
+2015-12-27 19:20:02,860 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:02,968 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:03,285 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:03,314 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:03,667 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:03,770 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:03,900 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:03,904 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,047 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,075 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,118 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,161 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,241 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,243 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,299 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,322 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 19:20:04,343 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+>>>>>>> f50c33e54556a066af091ad6e698a7f92dc65d0f
+2015-12-27 16:47:15,439 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,451 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,710 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,832 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,847 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,953 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,962 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,973 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:47:15,982 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 16:59:06,672 hit_not_registered_with_ad_server (1018) {'assignmentId': [u'debugRXDLMV'], 'workerId': [u'None'], 'hitId': [u'debug2TSYQU'], 'mode': [u'sandbox']}
+2015-12-27 17:00:51,826 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:51,885 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:52,061 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:52,179 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:52,239 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:52,294 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:52,295 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:52,298 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:00:52,401 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:01:55,229 already_did_exp_hit (1010) {'assignmentId': [u'debugA2YR8C'], 'workerId': [u'None'], 'hitId': [u'debugGUTABE'], 'mode': [u'sandbox']}
+2015-12-27 17:03:10,932 already_did_exp_hit (1010) {'assignmentId': [u'debugU1J3KC'], 'workerId': [u'None'], 'hitId': [u'debugGVV5X2'], 'mode': [u'sandbox']}
+2015-12-27 17:13:09,788 already_did_exp_hit (1010) {'assignmentId': [u'debugGQKDD9'], 'workerId': [u'None'], 'hitId': [u'debugRG0JK0'], 'mode': [u'sandbox']}
+2015-12-27 17:15:29,102 already_did_exp_hit (1010) {'assignmentId': [u'debugGQKDD9'], 'workerId': [u'None'], 'hitId': [u'debugRG0JK0'], 'mode': [u'sandbox']}
+2015-12-27 17:16:34,590 already_did_exp_hit (1010) {'assignmentId': [u'debugGQKDD9'], 'workerId': [u'None'], 'hitId': [u'debugRG0JK0'], 'mode': [u'sandbox']}
+2015-12-27 17:17:21,373 already_did_exp_hit (1010) {'assignmentId': [u'debugGQKDD9'], 'workerId': [u'None'], 'hitId': [u'debugRG0JK0'], 'mode': [u'sandbox']}
+2015-12-27 17:21:00,120 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,127 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,364 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,429 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,439 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,463 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,496 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,540 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:00,582 /usr/local/lib/python2.7/dist-packages/psiturk/psiturk_js/psiturk.js
+2015-12-27 17:21:21,188 hit_not_registered_with_ad_server (1018) {'assignmentId': [u'debugHGZUAJ'], 'workerId': [u'None'], 'hitId': [u'debug9LUYR6'], 'mode': [u'sandbox']}
