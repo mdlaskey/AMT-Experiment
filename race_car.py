@@ -95,7 +95,7 @@ def serve_pil_image(pil_img):
 
 @custom_code.route('/get_help')
 def get_help():
-	
+	IPython.embed()	
 	#Sort Data
 	data = dict(request.args)
 	state = np.array(data['undefined'][0:4], dtype=float)

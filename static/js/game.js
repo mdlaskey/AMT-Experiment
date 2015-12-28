@@ -270,7 +270,7 @@ var update = function (modifier) {
 
 	if(inOil()){
 
-		$.ajax('http://0.0.0.0:5000/get_help', {
+		$.ajax('http://128.32.164.66:5000/get_help', {
 	                type: "GET",
 	                data: state
 	                });
