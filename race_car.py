@@ -1,6 +1,7 @@
 # this file imports custom routes into the experiment server
 import sys
-sys.path.append('/Users/michaelluskey/Documents/RL/LFD/lapmaster1.1/')
+#sys.path.append('/Users/michaelluskey/Documents/RL/LFD/lapmaster1.1/')
+sys.path.append('/home/laskeymd/RL')
 from race_game_asst import RaceGame
 import IPython 
 import numpy as np
