@@ -26,7 +26,8 @@ var pages = [
 	"summer_game.html",
 	"final_game.html",
 	"winter_game_ec.html",
-	"postquestionnaire.html"
+	"postquestionnaire.html",
+	"postquestionnaire_nc.html"
 ];
 
 psiTurk.preloadPages(pages);
@@ -36,11 +37,11 @@ psiTurk.preloadPages(pages);
 var instructionPages_nc = [ // add as a list as many pages as you like
 	"instructions/instruct-1.html",
 	"instructions/instruct-2.html",
-	"summer_game.html",
+	//"summer_game.html",
 	"instructions/instruct-3.html",
-	"winter_game_nc.html",
-	"instructions/instruct-5.html",
-	"final_game.html"
+	//"winter_game_nc.html",
+	"instructions/instruct-5_nc.html"
+	//"final_game.html"
 
 	
 ];
@@ -145,8 +146,12 @@ var Questionnaire = function() {
 	};
 
 	// Load the questionnaire snippet 
-	
-	psiTurk.showPage('postquestionnaire.html');
+	 if(condition == 0){
+	 	psiTurk.showPage('postquestionnaire_nc.html');
+	 }
+	 else{
+		psiTurk.showPage('postquestionnaire.html');
+	}
 
 	psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'begin'});
 	
@@ -179,9 +184,10 @@ var currentview;
  ******************/
 $(window).load( function(){
 
+	condition = 1
 	if(condition == 0){
 		psiTurk.doInstructions(
-			instructionPages_ec, // a list of pages you want to display in sequence
+			instructionPages_nc, // a list of pages you want to display in sequence
 			function() { currentview = new Questionnaire(); } 
 		);
 	}

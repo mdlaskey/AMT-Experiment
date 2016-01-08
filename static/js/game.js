@@ -218,7 +218,7 @@ var dynamics = function(angle,acc){
 		val = pumpedBrakes()
 		
 		if(val > 0.0){
-			angle = 0.1*angle-.15
+			angle = 0.5*angle-.145
 		}
 	}
 	car_dyn(angle,acc)
