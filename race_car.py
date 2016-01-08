@@ -105,7 +105,7 @@ def serve_pil_image(pil_img):
 @custom_code.route('/get_help')
 @crossdomain(origin='*')
 def get_help():
-	IPython.embed()	
+
 	#Sort Data
 	data = dict(request.args)
 

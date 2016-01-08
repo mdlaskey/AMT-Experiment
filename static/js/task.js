@@ -187,7 +187,7 @@ $(window).load( function(){
 	}
 	else{
 		psiTurk.doInstructions(
-			instructionPages_nc, // a list of pages you want to display in sequence
+			instructionPages_ec, // a list of pages you want to display in sequence
 			function() { currentview = new Questionnaire(); } 
 		);
 	}
