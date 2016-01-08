@@ -12,6 +12,8 @@ var mycondition = condition;  // these two variables are passed by the psiturk s
 var mycounterbalance = counterbalance;  // they tell you which condition you have been assigned to
 // they are not used in the stroop code but may be useful to you
 
+console.log("CONDITIONS ",condition," ",counterbalance)
+
 // All pages to be loaded
 var pages = [
 	"instructions/instruct-1.html",
@@ -86,15 +88,12 @@ var instructionPages_ec = [ // add as a list as many pages as you like
 questions = false
 var CarExperiment = function() {
 
-	
-
-
 	questions = true
 	
-
-
 	
 };
+
+wkrID =  psiTurk.taskdata.get('workerId')
 
 /****************
 * Questionnaire *
@@ -104,7 +103,10 @@ var Questionnaire = function() {
 
 	var error_message = "<h1>Oops!</h1><p>Something went wrong submitting your HIT. This might happen if you lose your internet connection. Press the button to resubmit.</p><button id='resubmit'>Resubmit</button>";
 	var responses = []; // create an empty array
-
+	responses.push({
+		key: "ID",
+		value: wkrID
+	})
 	
 	record_responses = function() {
 
@@ -150,7 +152,7 @@ var Questionnaire = function() {
 	
 	$("#next").click(function () {
 	    record_responses();
-	    $.ajax('http://127.0.0.1:5000/save_data', {
+	    $.ajax('http://128.32.164.66:5000/save_data', {
                 type: "GET",
                 data: responses
                 });
@@ -177,10 +179,18 @@ var currentview;
  ******************/
 $(window).load( function(){
 
-	psiTurk.doInstructions(
-		instructionPages_nc, // a list of pages you want to display in sequence
-		function() { currentview = new Questionnaire(); } 
-	);
+	if(condition == 0){
+		psiTurk.doInstructions(
+			instructionPages_ec, // a list of pages you want to display in sequence
+			function() { currentview = new Questionnaire(); } 
+		);
+	}
+	else{
+		psiTurk.doInstructions(
+			instructionPages_nc, // a list of pages you want to display in sequence
+			function() { currentview = new Questionnaire(); } 
+		);
+	}
 
  
     
