@@ -12,6 +12,7 @@ var mycondition = condition;  // these two variables are passed by the psiturk s
 var mycounterbalance = counterbalance;  // they tell you which condition you have been assigned to
 // they are not used in the stroop code but may be useful to you
 
+address = '0.0.0.0'
 console.log("CONDITIONS ",condition," ",counterbalance)
 
 // All pages to be loaded
@@ -26,6 +27,7 @@ var pages = [
 	"summer_game.html",
 	"final_game.html",
 	"winter_game_ec.html",
+	"winter_game_rc.html",
 	"postquestionnaire.html",
 	"postquestionnaire_nc.html"
 ];
@@ -59,18 +61,16 @@ var instructionPages_ec = [ // add as a list as many pages as you like
 	
 ];
 
-// var instructionPages_rc = [ // add as a list as many pages as you like
-// 	"instructions/instruct-1.html",
-// 	"instructions/instruct-2.html",
-// 	"summer_game.html",
-// 	"instructions/instruct-3.html",
-// 	"instructions/instruct-4.html",
-// 	"winter_game_rc.html",
-// 	"instructions/instruct-5.html",
-// 	"final_game.html"
-
-	
-// ];
+var instructionPages_rc = [ // add as a list as many pages as you like
+	"instructions/instruct-1.html",
+	"instructions/instruct-2.html",
+	"summer_game.html",
+	"instructions/instruct-3.html",
+	"instructions/instruct-4.html",
+	"winter_game_rc.html",
+	"instructions/instruct-5.html",
+	"final_game.html"
+];
 
 
 
@@ -157,7 +157,7 @@ var Questionnaire = function() {
 	
 	$("#next").click(function () {
 	    record_responses();
-	    $.ajax('http://128.32.164.66:5000/save_data', {
+	    $.ajax('http://'+address+':5000/save_data', {
                 type: "GET",
                 data: responses
                 });
@@ -193,7 +193,7 @@ $(window).load( function(){
 	}
 	else{
 		psiTurk.doInstructions(
-			instructionPages_ec, // a list of pages you want to display in sequence
+			instructionPages_rc, // a list of pages you want to display in sequence
 			function() { currentview = new Questionnaire(); } 
 		);
 	}
