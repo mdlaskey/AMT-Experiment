@@ -12,6 +12,7 @@ var mycondition = condition;  // these two variables are passed by the psiturk s
 var mycounterbalance = counterbalance;  // they tell you which condition you have been assigned to
 // they are not used in the stroop code but may be useful to you
 
+
 address = '128.32.164.66'
 console.log("CONDITIONS ",condition," ",counterbalance)
 
@@ -22,6 +23,7 @@ var pages = [
 	"instructions/instruct-3.html",
 	"instructions/instruct-4.html",
 	"instructions/instruct-5.html",
+	"instructions/instruct-4_l.html",
 	"instructions/instruct-ready.html",
 	"winter_game_nc.html",
 	"summer_game.html",
@@ -42,7 +44,7 @@ var instructionPages_nc = [ // add as a list as many pages as you like
 	"summer_game.html",
 	"instructions/instruct-3.html",
 	"winter_game_nc.html",
-	"instructions/instruct-5_nc.html"
+	"instructions/instruct-5_nc.html",
 	"final_game.html"
 
 	
@@ -194,7 +196,7 @@ var currentview;
  ******************/
 $(window).load( function(){
 
-	condition = 2
+	condition = 1
 	if(condition == 0){
 		psiTurk.doInstructions(
 			instructionPages_nc, // a list of pages you want to display in sequence
