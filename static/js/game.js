@@ -21,7 +21,7 @@ canvas.width = 512;
 canvas.height = 480;
 started = false
 advice_loaded = true
-stored = false
+
 
 workerID = psiTurk.taskdata.get('workerId')
 console.log(psiTurk)
@@ -330,16 +330,11 @@ var update = function (modifier) {
 
 
 	if(inOil()){
-		stored = false
+		
 		$.ajax('http://'+address+':5000/get_help', {
 	                type: "GET",
 	                data: state,
-	                success: function( response ) {
-				    // server response
-				    
-				    stored = true
-	    	
-	                });
+	                }
 		
 		if(roboCoach && round>0 && !summer){
 			learningCoach()
