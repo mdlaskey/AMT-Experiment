@@ -10,11 +10,10 @@
         <form id="postquiz" action="debrief" method="post">
             <h3>Please Rate Your Level of Agreement with the Following Statements</h3>
             
-
-            <!-- beginning of a question -->
+        <!-- beginning of a question -->
             <div class="row question">
                 <div class="col-md-8">
-                    "Driving on the black ice was challenging." 
+                    "Driving on the black ice was challenging in the beginning." 
                 </div>
                 <div class="col-md-4">
                     <select id="black_ice" name="black_ice">
@@ -28,18 +27,36 @@
             </div>
             <!-- end of a question -->
 
-             <!-- beginning of a question -->
+            <!-- beginning of a question -->
             <div class="row question">
                 <div class="col-md-8">
-                   "I learned to drive better over the black ice."
+                    "Driving on the black ice was challenging at the end." 
                 </div>
                 <div class="col-md-4">
-                    <select id="learning" name="learning">
-                        <option id="learning" value="4">Strongly Agree</option>
-                        <option id="learning" value="3">Agree</option>
-                        <option id="learning" value="2" SELECTED>Neutral</option>
-                        <option id="learning" value="1">Disagree</option>
-                        <option id="learning" value="0">Strongly Disagree</option>
+                    <select id="black_ice" name="black_ice">
+                        <option value="4">Strongly Agree</option>
+                        <option value="3">Agree</option>
+                        <option value="2" SELECTED>Neutral</option>
+                        <option value="1">Disagree</option>
+                        <option value="0">Strongly Disagree</option>
+                    </select>
+                </div>
+            </div>
+            <!-- end of a question -->
+
+
+            <!-- beginning of a question -->
+            <div class="row question">
+                <div class="col-md-8">
+                    "I learned to drive better over the black ice."
+                </div>
+                <div class="col-md-4">
+                    <select id="black_ice" name="black_ice">
+                        <option value="4">Strongly Agree</option>
+                        <option value="3">Agree</option>
+                        <option value="2" SELECTED>Neutral</option>
+                        <option value="1">Disagree</option>
+                        <option value="0">Strongly Disagree</option>
                     </select>
                 </div>
             </div>
@@ -101,7 +118,7 @@
                     What is your Age?
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="Age"><br>
+                    <textarea name="Age"></textarea>
                 </div>
             </div>
 

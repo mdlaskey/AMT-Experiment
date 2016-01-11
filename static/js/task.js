@@ -51,12 +51,12 @@ var instructionPages_nc = [ // add as a list as many pages as you like
 var instructionPages_ec = [ // add as a list as many pages as you like
 	"instructions/instruct-1.html",
 	"instructions/instruct-2.html",
-	"summer_game.html",
+	//"summer_game.html",
 	"instructions/instruct-3.html",
 	"instructions/instruct-4.html",
-	"winter_game_ec.html",
+	//"winter_game_ec.html",
 	"instructions/instruct-5.html",
-	"final_game.html"
+	//"final_game.html"
 
 	
 ];
@@ -64,12 +64,12 @@ var instructionPages_ec = [ // add as a list as many pages as you like
 var instructionPages_rc = [ // add as a list as many pages as you like
 	"instructions/instruct-1.html",
 	"instructions/instruct-2.html",
-	"summer_game.html",
+	//"summer_game.html",
 	"instructions/instruct-3.html",
 	"instructions/instruct-4.html",
-	"winter_game_rc.html",
+	//"winter_game_rc.html",
 	"instructions/instruct-5.html",
-	"final_game.html"
+	//"final_game.html"
 ];
 
 
@@ -108,13 +108,23 @@ var Questionnaire = function() {
 		key: "ID",
 		value: wkrID
 	})
+	responses.push({
+		key: "condition",
+		value: condition
+	})
 	
 	record_responses = function() {
 
 		psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'submit'});
 
 		$('textarea').each( function(i, val) {
+			console.log("TEXT INPUT "+this.value)
+			responses.push({
+				key:   this.id,
+				value: this.value
+			});
 			psiTurk.recordUnstructuredData(this.id, this.value);
+
 		});
 		$('select').each( function(i, val) {
 			responses.push({
@@ -184,24 +194,26 @@ var currentview;
  ******************/
 $(window).load( function(){
 
-	condition = 1
+	condition = 2
 	if(condition == 0){
 		psiTurk.doInstructions(
 			instructionPages_nc, // a list of pages you want to display in sequence
 			function() { currentview = new Questionnaire(); } 
 		);
 	}
-	else{
+	else if(condition == 1){
 		psiTurk.doInstructions(
 			instructionPages_rc, // a list of pages you want to display in sequence
 			function() { currentview = new Questionnaire(); } 
 		);
 	}
+	else{
+		psiTurk.doInstructions(
+			instructionPages_ec, // a list of pages you want to display in sequence
+			function() { currentview = new Questionnaire(); } 
+		);
+	}
 
- 
-    
-    	
-    
     //psiTurk.doInstructions(
     //	gamePage
     //);

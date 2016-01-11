@@ -123,8 +123,23 @@ var car_dyn = function(angle,acc){
 }
 
 advice = []
+
+var checkRight = function(){
+	if(car.low && fdbback < 0){
+		return true 
+	}
+	else if(!car.low && fdbback >0){
+		return true
+	}
+	else{
+		return false
+	}
+
+}
+
+
 var learningCoach = function(){
-	epsilon = 28.3
+	epsilon = 180
 	conf = 0.0
 	for(i=0; i<advice.length; i++){
 		state = advice[i][0]
@@ -132,9 +147,9 @@ var learningCoach = function(){
 		sum += Math.pow(car.y-state[1],2)
 		l2 = Math.pow(sum,0.5)
 
-		if(l2< epsilon){
+		if(l2< epsilon  && advice[i][1][1]>0 && car.v == state[2] && !checkRight()){
 			
-			fdbback = advice[i][1][1]
+			fdbback = advice[i][1][0]
 			console.log("fdbback ",fdbback)
 			
 			return
@@ -222,6 +237,7 @@ var dynamics = function(angle,acc){
 		
 		if(val > 0.0){
 			angle = 0.5*angle-.145
+			//angle = angle
 		}
 	}
 	car_dyn(angle,acc)
@@ -258,14 +274,17 @@ var make_data= function (){
 		key: "y",
 		value: (car.y-1700)-(canvas.width/2 - 1187)
 	})
-	data.push({
-		key: "theta",
-		value: car.theta
-	})
+
 	data.push({
 		key: "v",
 		value: car.v
 	})
+
+	data.push({
+		key: "theta",
+		value: car.theta
+	})
+	
 	return data
 }
 
@@ -402,10 +421,10 @@ var finish = function(complete){
 	})
 	keys.push({
 		key: "roboCoach",
-		value: roboCoach
+		value: roboCoach && !complete
 	})
 	reset_car(complete)
-	if(roboCoach){
+	if(roboCoach && !complete){
 		document.getElementById('text_wait').style.visibility = 'visible'
 		advice_loaded = false
 	}
@@ -418,11 +437,12 @@ var finish = function(complete){
 		success: function( response ) {
 	    // server response
 	    
-	    if(roboCoach){
+	    if(roboCoach && !complete){
 	    	advice = response.items
 	    	document.getElementById('text_wait').style.visibility = 'hidden'
-	    	advice_loaded = true
+	    	
 	    }
+	   		advice_loaded = true
 		}
         });
 
@@ -431,12 +451,14 @@ var finish = function(complete){
 }
 
 var start = function (modifier){
+	console.log("HEEREER")
 	if(!roboCoach){	
+
 		if(!started){
 			document.getElementById('text').style.visibility = 'visible'
 		}
 		if(13 in keysDown){
-		started = true
+			started = true
 			document.getElementById('text').style.visibility = 'hidden'
 		}
 	}
@@ -445,6 +467,7 @@ var start = function (modifier){
 			document.getElementById('text').style.visibility = 'visible'
 		}
 		if(13 in keysDown && advice_loaded){
+
 			started = true
 			document.getElementById('text').style.visibility = 'hidden'
 		}
@@ -458,6 +481,7 @@ var start = function (modifier){
 var main = function () {
 	var now = Date.now();
 	var delta = now - then;
+	console.log("BGREADY "+bgReady+" Start "+started+"ROUNDS "+round)
 	if(round < ROUNDS && bgReady && started){
 		if(t<T){
 		

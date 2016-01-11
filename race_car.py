@@ -43,7 +43,7 @@ custom_code.config['PROPAGATE_EXCEPTIONS'] = True
 AllData = dict()
 CurrentData = dict()
 CumData = dict()
-rCoach = RobotCont()
+Coaches = dict()
 
 supervisor = Supervisor()
 
@@ -133,18 +133,22 @@ def finish_trial():
 
 	if not (key in CumData):
 		CumData[key] = [CurrentData[key]]
+		Coaches[key] = RobotCont()
 	else:
 		CumData[key].append(CurrentData[key])
 
 	if(useCoach == 'true'):
-		costs = np.asarray(CurrentData[key][2])
+		adj_costs = CurrentData[key][2]
+		adj_costs.pop(0)
+		costs = np.asarray(adj_costs)
 		states = np.asarray(CurrentData[key][0])
 		controls = np.asarray(CurrentData[key][1])
-		rCoach.updateQ(costs,states,controls)
-		fdback = rCoach.batchFeedBack()
+		Coaches[key].updateQ(costs,states,controls)
+		fdback = Coaches[key].batchFeedBack()
+		CurrentData[key] = [[],[],[]]
 	
 		return jsonify(result = {"status":200}, items =fdback)
-
+	CurrentData[key] = [[],[],[]]
 	return jsonify(result = {"status":200}, items = [])
 
 	
@@ -166,7 +170,9 @@ def get_stuff():
 def save_data():
 	responses = dict(request.args)
 	key = responses['undefined'][0]
-	total_data = [responses,CumData[key]]
+	condition = responses['undefined'][1]
+
+	total_data = [condition,responses,CumData[key]]
 	AllData[key] = total_data
 	pickle.dump(AllData,open('AllData.p','wb'))
 	return jsonify(result = {"status":200}, items = [])
@@ -177,5 +183,5 @@ def save_data():
 
 if __name__ == '__main__':
 	print "running"
-
+	# AllData = pickle.load(open('AllData.p','rb'))
 	custom_code.run(host='0.0.0.0')
