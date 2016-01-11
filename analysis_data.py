@@ -72,11 +72,11 @@ if __name__ == '__main__':
 
 	
 	print "-----------DURING LEARNING-----------"
-	#print "Average Cost w/ No ",getPerfLearning(no_coach[2])
+	print "Average Cost w/ No ",getPerfLearning(no_coach)
 	print "Average Cost w/ Learning Robot ",getPerfLearning(learning_coach)
 	print "Average Cost w/ Expert ",getPerfLearning(expert_coach)
 
 	print "-----------AFTER LEARNING-----------"
-	#print "Average Cost w/ No ",getPerfLearned(no_coach[2])
+	print "Average Cost w/ No ",getPerfLearned(no_coach)
 	print "Average Cost w/ Learning Robot ",getPerfLearned(learning_coach)
 	print "Average Cost w/ Expert ",getPerfLearned(expert_coach)

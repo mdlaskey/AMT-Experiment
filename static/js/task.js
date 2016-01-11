@@ -196,7 +196,7 @@ var currentview;
  ******************/
 $(window).load( function(){
 
-	condition = 1
+	//condition = 1
 	if(condition == 0){
 		psiTurk.doInstructions(
 			instructionPages_nc, // a list of pages you want to display in sequence
