@@ -13,6 +13,10 @@ var mycounterbalance = counterbalance;  // they tell you which condition you hav
 // they are not used in the stroop code but may be useful to you
 
 
+
+
+//http://128.32.164.66/
+
 address = '128.32.164.66'
 console.log("CONDITIONS ",condition," ",counterbalance)
 
