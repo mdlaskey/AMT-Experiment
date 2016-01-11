@@ -12,7 +12,7 @@ var mycondition = condition;  // these two variables are passed by the psiturk s
 var mycounterbalance = counterbalance;  // they tell you which condition you have been assigned to
 // they are not used in the stroop code but may be useful to you
 
-address = '0.0.0.0'
+address = '128.32.164.66'
 console.log("CONDITIONS ",condition," ",counterbalance)
 
 // All pages to be loaded
