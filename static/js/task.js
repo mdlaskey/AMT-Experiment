@@ -23,6 +23,7 @@ var pages = [
 	"instructions/instruct-3.html",
 	"instructions/instruct-4.html",
 	"instructions/instruct-5.html",
+	"instructions/instruct-4_l.html",
 	"instructions/instruct-ready.html",
 	"winter_game_nc.html",
 	"summer_game.html",

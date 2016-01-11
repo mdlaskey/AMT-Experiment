@@ -58,9 +58,9 @@ if __name__ == '__main__':
 	learning_coach = []
 	expert_coach = []
 	for key in AllData:
-		if(AllData[key][0] == 0):
+		if(AllData[key][0] == '0'):
 			no_coach.append(AllData[key])
-		elif(AllData[key][0] == 1): 
+		elif(AllData[key][0] == '1'): 
 			learning_coach.append(AllData[key])
 		else: 
 			expert_coach.append(AllData[key])
@@ -72,11 +72,11 @@ if __name__ == '__main__':
 
 	
 	print "-----------DURING LEARNING-----------"
-	print "Average Cost w/ No ",getPerfLearning(no_coach[2])
+	#print "Average Cost w/ No ",getPerfLearning(no_coach[2])
 	print "Average Cost w/ Learning Robot ",getPerfLearning(learning_coach[2])
 	print "Average Cost w/ Expert ",getPerfLearning(expert_coach)
 
 	print "-----------AFTER LEARNING-----------"
-	print "Average Cost w/ No ",getPerfLearned(no_coach[2])
+	#print "Average Cost w/ No ",getPerfLearned(no_coach[2])
 	print "Average Cost w/ Learning Robot ",getPerfLearned(learning_coach[2])
 	print "Average Cost w/ Expert ",getPerfLearned(expert_coach)
