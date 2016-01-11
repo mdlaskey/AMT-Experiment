@@ -11,6 +11,7 @@ if(document.body != null){
 	var summer = (document.getElementById("summer").className == 'true')
 	var fnl = (document.getElementById("final").className == 'true')
 	document.getElementById('next').style.visibility = 'hidden'
+	document.getElementById('text_wait').style.visibility = 'hidden'
 }
 
 console.log(background+" "+roboCoach+" "+expert+" "+summer+" "+fnl)
@@ -19,6 +20,7 @@ var ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 480;
 started = false
+advice_loaded = true
 
 workerID = psiTurk.taskdata.get('workerId')
 console.log(psiTurk)
@@ -121,20 +123,36 @@ var car_dyn = function(angle,acc){
 }
 
 advice = []
+
+var checkRight = function(){
+	if(car.low && fdbback < 0){
+		return true 
+	}
+	else if(!car.low && fdbback >0){
+		return true
+	}
+	else{
+		return false
+	}
+
+}
+
+
 var learningCoach = function(){
+	epsilon = 180
+	conf = 0.0
 	for(i=0; i<advice.length; i++){
 		state = advice[i][0]
 		sum = Math.pow(car.x-state[0],2)
 		sum += Math.pow(car.y-state[1],2)
-		sum += Math.pow(car.v - state[4],2)
-		if(sum< epsilon){
-			if(advice[i][2] > conf){
-				advice = advice[1][1]
-			}
-			else{
-				advice = 0
-			}
-		return
+		l2 = Math.pow(sum,0.5)
+
+		if(l2< epsilon  && advice[i][1][1]>0 && car.v == state[2] && !checkRight()){
+			
+			fdbback = advice[i][1][0]
+			console.log("fdbback ",fdbback)
+			
+			return
 		}
 	}
 }
@@ -219,6 +237,7 @@ var dynamics = function(angle,acc){
 		
 		if(val > 0.0){
 			angle = 0.5*angle-.145
+			//angle = angle
 		}
 	}
 	car_dyn(angle,acc)
@@ -255,26 +274,20 @@ var make_data= function (){
 		key: "y",
 		value: (car.y-1700)-(canvas.width/2 - 1187)
 	})
-	data.push({
-		key: "theta",
-		value: car.theta
-	})
+
 	data.push({
 		key: "v",
 		value: car.v
 	})
+
+	data.push({
+		key: "theta",
+		value: car.theta
+	})
+	
 	return data
 }
 
-var start = function (modifier){
-	if(!started){
-		document.getElementById('text').style.visibility = 'visible'
-	}
-	if(13 in keysDown){
-		started = true
-		document.getElementById('text').style.visibility = 'hidden'
-	}
-}
 
 // Update game objects
 var update = function (modifier) {
@@ -311,13 +324,13 @@ var update = function (modifier) {
 
 	if(inOil()){
 
-		$.ajax('http://128.32.164.66:5000/get_help', {
+		$.ajax('http://'+address+':5000/get_help', {
 	                type: "GET",
 	                data: state
 	                });
 		
-		if(roboCoach){
-			console.log("Give advice")	
+		if(roboCoach && round>0 && !summer){
+			learningCoach()
 		}
 		else if(expert){
 		 	expertCoach()
@@ -369,10 +382,10 @@ var render = function () {
 		if(fdbback == 0 && carReady){
 			drawRotatedImage(carImage, canvas.width/2, canvas.height/2,car.theta);
 		}
-		else if(fdbback == -1 && downReady){
+		else if(fdbback < 0 && downReady){
 			drawRotatedImage(downImage, canvas.width/2, canvas.height/2,car.theta);
 		}
-		else if(fdbback == 1 && upReady){
+		else if(fdbback > 0 && upReady){
 			drawRotatedImage(upImage, canvas.width/2, canvas.height/2,car.theta);
 		}
 	}
@@ -408,31 +421,67 @@ var finish = function(complete){
 	})
 	keys.push({
 		key: "roboCoach",
-		value: roboCoach
+		value: roboCoach && !complete
 	})
+	reset_car(complete)
+	if(roboCoach && !complete){
+		document.getElementById('text_wait').style.visibility = 'visible'
+		advice_loaded = false
+	}
 
 
-	$.ajax('http://128.32.164.66:5000/finish_trial', {
+	$.ajax('http://'+address+':5000/finish_trial', {
         type: "GET",
         data: keys,
         // Work with the response
 		success: function( response ) {
-	     // server response
+	    // server response
 	    
-	    if(roboCoach){
+	    if(roboCoach && !complete){
 	    	advice = response.items
+	    	document.getElementById('text_wait').style.visibility = 'hidden'
+	    	
 	    }
+	   		advice_loaded = true
 		}
         });
 
-	reset_car(complete)
+	
 	requestAnimationFrame(main);
 }
+
+var start = function (modifier){
+	console.log("HEEREER")
+	if(!roboCoach){	
+
+		if(!started){
+			document.getElementById('text').style.visibility = 'visible'
+		}
+		if(13 in keysDown){
+			started = true
+			document.getElementById('text').style.visibility = 'hidden'
+		}
+	}
+	else{
+		if(!started && advice_loaded){
+			document.getElementById('text').style.visibility = 'visible'
+		}
+		if(13 in keysDown && advice_loaded){
+
+			started = true
+			document.getElementById('text').style.visibility = 'hidden'
+		}
+	}
+}
+
+
+
 
 // The main game loop
 var main = function () {
 	var now = Date.now();
 	var delta = now - then;
+	console.log("BGREADY "+bgReady+" Start "+started+"ROUNDS "+round)
 	if(round < ROUNDS && bgReady && started){
 		if(t<T){
 		
