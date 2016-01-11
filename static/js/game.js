@@ -333,8 +333,8 @@ var update = function (modifier) {
 		
 		$.ajax('http://'+address+':5000/get_help', {
 	                type: "GET",
-	                data: state,
-	                }
+	                data: state
+	                });
 		
 		if(roboCoach && round>0 && !summer){
 			learningCoach()
