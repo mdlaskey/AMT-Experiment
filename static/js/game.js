@@ -10,17 +10,23 @@ if(document.body != null){
 	var expert = (document.getElementById("expertCoach").className == 'true')
 	var summer = (document.getElementById("summer").className == 'true')
 	var fnl = (document.getElementById("final").className == 'true')
+	var training = (document.getElementById("training").className == 'true')
 	document.getElementById('next').style.visibility = 'hidden'
 	document.getElementById('text_wait').style.visibility = 'hidden'
+	document.getElementById('train_up').style.visibility = 'hidden'
+	document.getElementById('train_down').style.visibility = 'hidden'
+	document.getElementById('test_up').style.visibility = 'hidden'
+	document.getElementById('test_down').style.visibility = 'hidden'
 }
-
+train_coach = training
 console.log(background+" "+roboCoach+" "+expert+" "+summer+" "+fnl)
-
+train_down = true
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 480;
 started = false
 advice_loaded = true
+train_count = 0
 
 
 workerID = psiTurk.taskdata.get('workerId')
@@ -241,6 +247,9 @@ var dynamics = function(angle,acc){
 		}
 
 		val = pumpedBrakes()
+		if(acc > 0){
+			acc = 0.1
+		}
 		
 		if(val > 0.0){
 			angle = 0.7*angle-.145
@@ -294,6 +303,36 @@ var make_data= function (){
 	
 	return data
 }
+
+
+var training_update = function(){
+	acc = 0
+	if (38 in keysDown) { // Player holding up
+		acc = 1;
+	}
+	if (40 in keysDown) { // Player holding down
+		acc = -1;
+	}
+
+	if(train_count == 0 && acc == -1){
+		train_count += 1
+	}
+	else if(train_count == 1 && acc == 1){
+		train_count += 1
+	}
+	else if(train_count == 2 && acc == -1){
+		train_count += 1
+	}
+	else if(train_count == 3 && acc == 1){
+		train_count += 1
+	}
+	else if(train_count == 4){
+		document.getElementById('next').style.visibility = 'visible'
+		training = false
+	}
+}
+
+
 
 
 // Update game objects
@@ -375,6 +414,39 @@ function drawRotatedImage(image, x, y, angle) {
 
 fdbback = 0;
 // Draw everything
+
+var render_train = function(){
+	document.getElementById('text').style.visibility = 'hidden'
+	var img_d = downImage
+	// img_d.width = '100%'
+	// img_d.height = '900%'
+
+	var img_u = upImage
+	// img_u.width = '900%'
+	// img_u.height = '900%'
+	if(train_count == 0){
+		drawRotatedImage(img_d, canvas.width/2, canvas.height/2,car.theta);
+		document.getElementById('train_up').style.visibility = 'hidden'
+		document.getElementById('train_down').style.visibility = 'visible'
+	}
+	else if(train_count == 1){
+		drawRotatedImage(img_u, canvas.width/2, canvas.height/2,car.theta);
+		document.getElementById('train_up').style.visibility = 'visible'
+		document.getElementById('train_down').style.visibility = 'hidden'
+	}
+	else if(train_count == 2){
+		drawRotatedImage(img_d, canvas.width/2, canvas.height/2,car.theta);
+		document.getElementById('test_down').style.visibility = 'visible'
+		document.getElementById('train_up').style.visibility = 'hidden'
+	}
+	else if(train_count == 3){
+		drawRotatedImage(img_u, canvas.width/2, canvas.height/2,car.theta);
+		document.getElementById('test_up').style.visibility = 'visible'
+		document.getElementById('test_down').style.visibility = 'hidden'
+	}
+
+}
+
 var render = function () {
 	if (bgReady) {
 
@@ -405,7 +477,7 @@ var render = function () {
 
 };
 
-ROUNDS = 5
+ROUNDS = 1
 round = 0
 if(fnl || summer){
 	ROUNDS = 1
@@ -458,7 +530,7 @@ var finish = function(complete){
 }
 
 var start = function (modifier){
-	console.log("HEEREER")
+
 	if(!roboCoach){	
 
 		if(!started){
@@ -488,8 +560,8 @@ var start = function (modifier){
 var main = function () {
 	var now = Date.now();
 	var delta = now - then;
-	console.log("BGREADY "+bgReady+" Start "+started+"ROUNDS "+round)
-	if(round < ROUNDS && bgReady && started){
+	console.log("BGREADY "+bgReady+" Start "+started+"ROUNDS "+round + "train_coach "+train_coach)
+	if(round < ROUNDS && bgReady && started && !train_coach){
 		if(t<T){
 		
 			update(delta / 1000);
@@ -507,7 +579,12 @@ var main = function () {
 			finish(round == ROUNDS)
 		}
 	}
-	else if(!bgReady || !started){
+	else if(training){
+		training_update()
+		render_train()
+		requestAnimationFrame(main);
+	}
+	else if((!bgReady || !started) && !train_coach){
 		// Request to do this again ASAP
 		requestAnimationFrame(main);
 		//render();
