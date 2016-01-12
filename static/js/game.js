@@ -71,11 +71,11 @@ var car = {
 	y: canvas.width/2, 
 	x_f:-395.36474681, 
 	y_f:499.29913709,
-	ref_speed: 5,
+	ref_speed: 4,
 	help: 0,
 	low: false,
-	interval: 45,
-	t: 45
+	interval: 60,
+	t: 60
 };
 
 
@@ -97,11 +97,11 @@ var reset_car = function(complete){
 	car.y = canvas.width/2, 
 	car.x_f = -395.36474681, 
 	car.y_f = 499.29913709,
-	car.ref_speed = 5,
+	car.ref_speed = 4,
 	car.help = 0,
 	car.low = false,
-	interval = 45,
-	car.t = 45,
+	interval = 60,
+	car.t = 60,
 	fdbback = 0
 	if(!complete){
 		started = false
@@ -258,12 +258,12 @@ var dynamics = function(angle,acc){
 	}
 
 	if(!inOil() || summer){
-		if(car.v > 6){
-			car.v = 6
+		if(car.v > 5){
+			car.v = 5
 		}
 	}
-	if(car.v < 4){ 
-		car.v = 4
+	if(car.v < 3){ 
+		car.v = 3
 	}
 }
 
