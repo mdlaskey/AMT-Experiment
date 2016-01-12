@@ -41,7 +41,7 @@ psiTurk.preloadPages(pages);
 var instructionPages_nc = [ // add as a list as many pages as you like
 	"instructions/instruct-1.html",
 	"instructions/instruct-2.html",
-	"summer_game.html",
+	//"summer_game.html",
 	"instructions/instruct-3.html",
 	"winter_game_nc.html",
 	"instructions/instruct-5_nc.html",
@@ -53,7 +53,7 @@ var instructionPages_nc = [ // add as a list as many pages as you like
 var instructionPages_ec = [ // add as a list as many pages as you like
 	"instructions/instruct-1.html",
 	"instructions/instruct-2.html",
-	"summer_game.html",
+	//"summer_game.html",
 	"instructions/instruct-3.html",
 	"instructions/instruct-4.html",
 	"winter_game_ec.html",
@@ -196,7 +196,7 @@ var currentview;
  ******************/
 $(window).load( function(){
 
-	//condition = 1
+	condition = 2
 	if(condition == 0){
 		psiTurk.doInstructions(
 			instructionPages_nc, // a list of pages you want to display in sequence
