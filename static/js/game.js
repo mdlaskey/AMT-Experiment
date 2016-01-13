@@ -131,7 +131,7 @@ var car_dyn = function(angle,acc){
 
 advice = []
 
-var checkRight = function(a){
+var checkRight = function(){
 	if(car.low && fdbback < 0){
 		return true 
 	}
@@ -477,7 +477,7 @@ var render = function () {
 
 };
 
-ROUNDS = 8
+ROUNDS = 5
 round = 0
 if(fnl || summer){
 	ROUNDS = 1
