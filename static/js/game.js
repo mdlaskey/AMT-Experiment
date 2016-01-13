@@ -477,7 +477,7 @@ var render = function () {
 
 };
 
-ROUNDS = 1
+ROUNDS = 8
 round = 0
 if(fnl || summer){
 	ROUNDS = 1
