@@ -138,12 +138,12 @@ var checkRight = function(a){
 	else if(!car.low && fdbback >0){
 		return true
 	}
-	else if(car.low && a>0){
-		return true
-	}
-	else if(!car.low && a<0){
-		return true
-	}
+	// else if(car.low && a>0){
+	// 	return true
+	// }
+	// else if(!car.low && a<0){
+	// 	return true
+	// }
 	else{
 		return false
 	}
