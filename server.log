@@ -38085,3 +38085,88 @@ TemplateNotFound: undefined
 2016-01-12 12:38:29,467 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
 2016-01-12 12:38:29,474 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
 2016-01-12 12:38:29,494 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:30,343 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:30,438 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:30,767 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:30,843 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:30,845 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:30,880 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:30,945 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,022 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,139 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,239 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,312 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,322 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,344 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,353 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,361 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,375 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-12 22:15:31,390 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:993)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:994)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:995)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:996)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:997)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:998)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:999)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1000)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1001)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1002)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1003)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1004)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1005)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1006)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1007)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1008)
+[2016-01-13 00:16:16 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1009)
+[2016-01-13 10:12:14 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1440)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1441)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1442)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1443)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1444)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1445)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1446)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1447)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1448)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1449)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1450)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1434)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1435)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1436)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1437)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1438)
+[2016-01-13 10:12:15 -0800] [989] [CRITICAL] WORKER TIMEOUT (pid:1439)
+2016-01-13 10:12:17,841 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:17,842 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:17,842 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:17,870 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:17,890 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,085 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,090 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,127 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,130 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,171 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,185 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,201 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,227 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,240 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,256 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,279 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 10:12:18,287 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:06,648 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:06,728 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:06,842 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,087 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,234 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,463 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,582 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,617 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,656 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,730 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,738 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,780 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,809 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,874 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,876 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,879 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-01-13 11:07:07,883 /usr/local/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js

@@ -138,15 +138,16 @@ var checkRight = function(a){
 	else if(!car.low && fdbback >0){
 		return true
 	}
-	// else if(car.low && a>0){
-	// 	return true
-	// }
-	// else if(!car.low && a<0){
-	// 	return true
-	// }
+	else if(car.low && a>0){
+	 	return true
+	 }
+	 else if(!car.low && a<0){
+	 	return true
+	 }
 	else{
 		return false
 	}
+	//return false
 
 }
 
@@ -160,7 +161,7 @@ var learningCoach = function(){
 		sum += Math.pow(car.y-state[1],2)
 		l2 = Math.pow(sum,0.5)
 
-		if(l2< epsilon  && advice[i][1][1]>0 && car.v == state[2] && !checkRight()){
+		if(l2< epsilon  && advice[i][1][1]>0 && car.v == state[2] && !checkRight(advice[i][1][0])){
 			
 			fdbback = advice[i][1][0]
 			console.log("fdbback ",fdbback)
@@ -247,9 +248,9 @@ var dynamics = function(angle,acc){
 		}
 
 		val = pumpedBrakes()
-		if(acc > 0){
-			acc = 0.1
-		}
+		// if(acc > 0){
+		// 	acc = 0.1
+		// }
 		
 		if(val > 0.0){
 			angle = 0.5*angle-.145
@@ -341,6 +342,7 @@ var update = function (modifier) {
 	angle = 0
 
 	state = []
+	
 	
 	
 	if (38 in keysDown) { // Player holding up
@@ -477,7 +479,7 @@ var render = function () {
 
 };
 
-ROUNDS = 1
+ROUNDS = 5
 round = 0
 if(fnl || summer){
 	ROUNDS = 1
@@ -560,7 +562,7 @@ var start = function (modifier){
 var main = function () {
 	var now = Date.now();
 	var delta = now - then;
-	console.log("BGREADY "+bgReady+" Start "+started+"ROUNDS "+round + "train_coach "+train_coach)
+	//console.log("BGREADY "+bgReady+" Start "+started+"ROUNDS "+round + "train_coach "+train_coach)
 	if(round < ROUNDS && bgReady && started && !train_coach){
 		if(t<T){
 		
