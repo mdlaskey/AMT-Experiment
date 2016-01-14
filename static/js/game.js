@@ -131,7 +131,7 @@ var car_dyn = function(angle,acc){
 
 advice = []
 
-var checkRight = function(){
+var checkRight = function(a){
 	if(car.low && fdbback < 0){
 		return true 
 	}
@@ -253,7 +253,7 @@ var dynamics = function(angle,acc){
 		// }
 		
 		if(val > 0.0){
-			angle = 0.7*angle-.145
+			angle = 0.4*angle-.145
 			//angle = angle
 		}
 	}

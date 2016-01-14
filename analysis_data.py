@@ -5,7 +5,7 @@ import IPython
 
 #Measure how many timesteps until the best control
 def costFunction(controls):
-	intrvl = 45
+	intrvl = 60
 	cost = -1
 	sec_cost = -1
 	# print "CONTROLS LENGTH ", len(controls)
