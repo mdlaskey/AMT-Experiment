@@ -17,7 +17,7 @@ var mycounterbalance = counterbalance;  // they tell you which condition you hav
 
 //http://128.32.164.66/
 
-address = '128.32.164.66'
+address = '0.0.0.0'
 console.log("CONDITIONS ",condition," ",counterbalance)
 
 // All pages to be loaded
@@ -203,7 +203,7 @@ var currentview;
  * Run Task
  ******************/
 $(window).load( function(){
-
+	condition = 2
 	if(condition == 0){
 		psiTurk.doInstructions(
 			instructionPages_nc, // a list of pages you want to display in sequence

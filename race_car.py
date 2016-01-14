@@ -1,8 +1,8 @@
 # this file imports custom routes into the experiment server
 import sys
 
-#sys.path.append('/Users/michaelluskey/Documents/RL/LFD/lapmaster1.1/')
-sys.path.append('/home/laskeymd/RL')
+sys.path.append('/Users/michaelluskey/Documents/RL/LFD/lapmaster1.1/')
+#sys.path.append('/home/laskeymd/RL')
 
 
 import IPython 
@@ -142,13 +142,18 @@ def finish_trial():
 
 	if(useCoach == 'true'):
 		adj_costs = CurrentData[key][2]
-		adj_costs.pop(0)
-		costs = np.asarray(adj_costs)
-		states = np.asarray(CurrentData[key][0])
-		controls = np.asarray(CurrentData[key][1])
-		Coaches[key].updateQ(costs,states,controls)
-		fdback = Coaches[key].batchFeedBack()
-		CurrentData[key] = [[],[],[]]
+		IPython.embed()
+		if(len(adj_costs) == 0):
+			CurrentData[key] = [[],[],[]]
+			fdback = Coaches[key].batchFeedBack()
+		else:
+			adj_costs.pop(0)
+			costs = np.asarray(adj_costs)
+			states = np.asarray(CurrentData[key][0])
+			controls = np.asarray(CurrentData[key][1])
+			Coaches[key].updateQ(costs,states,controls)
+			fdback = Coaches[key].batchFeedBack()
+			CurrentData[key] = [[],[],[]]
 	
 		return jsonify(result = {"status":200}, items =fdback)
 	CurrentData[key] = [[],[],[]]
@@ -186,5 +191,5 @@ def save_data():
 
 if __name__ == '__main__':
 	print "running"
-	# AllData = pickle.load(open('AllData.p','rb'))
+	AllData = pickle.load(open('AllData.p','rb'))
 	custom_code.run(host='0.0.0.0')
