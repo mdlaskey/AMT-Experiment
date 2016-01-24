@@ -11,6 +11,7 @@ if(document.body != null){
 	var summer = (document.getElementById("summer").className == 'true')
 	var fnl = (document.getElementById("final").className == 'true')
 	var training = (document.getElementById("training").className == 'true')
+	var q_learn = (document.getElementById("q_learn").className == 'true')
 	document.getElementById('next').style.visibility = 'hidden'
 	document.getElementById('text_wait').style.visibility = 'hidden'
 	document.getElementById('train_up').style.visibility = 'hidden'
@@ -108,7 +109,7 @@ var reset_car = function(complete){
 	car.low = false,
 	interval = 60,
 	car.t = 60,
-	fdbback = 0
+	fdbback = [0,0]
 	if(!complete){
 		started = false
 	}
@@ -153,7 +154,7 @@ var checkRight = function(a){
 
 
 var learningCoach = function(){
-	epsilon = 180
+	epsilon = 60
 	conf = 0.0
 	for(i=0; i<advice.length; i++){
 		state = advice[i][0]
@@ -169,6 +170,44 @@ var learningCoach = function(){
 			return
 		}
 	}
+}
+
+
+var randRobot = function(){
+	angles = [-0.1, 0, 0.1]
+	acc = [-1.0,0,1.0]
+
+	idx = Math.floor((Math.random() * 2) + 0);
+
+	fdbback[0] = angles[idx]
+	idx = Math.floor((Math.random() * 2) + 0);
+	fdbback[1] = acc[idx]
+
+}
+
+var qRobot = function(){
+	epsilon = 60
+	conf = 0.0
+	for(i=0; i<advice.length; i++){
+		state_q = advice[i][0]
+		sum = Math.pow(car.x-state_q[0],2)
+		sum += Math.pow(car.y-state_q[1],2)
+		l2 = Math.pow(sum,0.5)
+		
+
+		
+		if(l2< epsilon && car.v == state_q[2]){
+			
+			//EPSLION GREEDDY
+	
+			fdbback = advice[i][1]
+			return
+		}
+		
+	}
+	console.log("DID NOT FIND STATE ", car.x, " ",car.y, " ", car.v)
+
+
 }
 
 
@@ -334,6 +373,27 @@ var training_update = function(){
 }
 
 
+var filter = function(modifier){
+	acc = fdbback[1]
+	angle = fdbback[0]
+	if(angle > 0.0001){
+		angle = 0.1
+	}
+	else if(angle < -0.0001){
+		angle = -0.1
+	}
+	if(acc > 0.0001){
+		acc = 1
+	}
+	else if(acc < -0.0001){
+		acc = -1
+	}
+	idx = Math.floor((Math.random() * 10) + 1);
+	if(idx == 1){
+		randRobot()
+	}
+		
+}
 
 
 // Update game objects
@@ -359,6 +419,23 @@ var update = function (modifier) {
 	}
 
 	state = make_data()
+
+
+	if(inOil() && q_learn && round == 0){
+		randRobot()
+		acc = fdbback[1]
+		angle = fdbback[0]
+		
+	}
+	else if(inOil() && q_learn && round > 0){
+		qRobot()
+		filter()
+		acc = fdbback[1]
+		angle = fdbback[0]
+		
+			
+	}
+
 	state.push({
 		key: "angle",
 		value: angle
@@ -369,6 +446,7 @@ var update = function (modifier) {
 	})
 
 
+	
 
 	if(inOil()){
 		
@@ -383,6 +461,19 @@ var update = function (modifier) {
 		else if(expert){
 		 	expertCoach()
 		}
+		// else if(q_learn && round == 0){
+		// 	randRobot()
+		// 	acc = fdbback[1]
+		// 	angle = fdbback[0]
+		// 	console.log("ACC "+acc+"ANGLE "+angle)
+		// }
+		// else if(q_learn && round>0){
+		// 	qRobot()
+		// 	filter()
+		// 	acc = fdbback[1]
+		// 	angle = fdbback[0]
+			
+		// }
 	}
 
 	dynamics(angle,acc)
@@ -414,7 +505,7 @@ function drawRotatedImage(image, x, y, angle) {
 
 
 
-fdbback = 0;
+fdbback = [0,0];
 // Draw everything
 
 var render_train = function(){
@@ -502,10 +593,10 @@ var finish = function(complete){
 	})
 	keys.push({
 		key: "roboCoach",
-		value: roboCoach && !complete
+		value: (roboCoach || q_learn) && !complete
 	})
 	reset_car(complete)
-	if(roboCoach && !complete){
+	if((roboCoach || q_learn) && !complete){
 		document.getElementById('text_wait').style.visibility = 'visible'
 		advice_loaded = false
 	}
@@ -518,7 +609,7 @@ var finish = function(complete){
 		success: function( response ) {
 	    // server response
 	    
-	    if(roboCoach && !complete){
+	    if((roboCoach|| q_learn) && !complete){
 	    	advice = response.items
 	    	document.getElementById('text_wait').style.visibility = 'hidden'
 	    	

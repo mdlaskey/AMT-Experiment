@@ -6,6 +6,7 @@ sys.path.append('/Users/michaelluskey/Documents/RL/LFD/lapmaster1.1/')
 
 
 import IPython 
+import cv2 
 import numpy as np
 from PIL import Image
 
@@ -27,6 +28,7 @@ from datetime import timedelta
 from psiturk.db import db_session, init_db
 from Classes.Supervisor import Supervisor 
 from Classes.RobotCont import RobotCont
+from Classes.RobotQ import RobotQ
 from psiturk.models import Participant
 from json import dumps, loads
 from cStringIO import StringIO
@@ -41,7 +43,7 @@ custom_code = Blueprint('custom_code', __name__, template_folder='templates', st
 custom_code = Flask(__name__)
 custom_code.config['PROPAGATE_EXCEPTIONS'] = True
 
-
+QLearning = True
 
 AllData = dict()
 CurrentData = dict()
@@ -93,18 +95,12 @@ def crossdomain(origin=None, methods=None, headers=None,
         return update_wrapper(wrapped_function, f)
     return decorator
 
-def serve_pil_image(pil_img):
-    img_io = StringIO()
-    pil_img.save(img_io, 'JPEG')
-    #print base64.b64encode(im_data.getvalue())
-    
-    return base64.b64encode(im_data.getvalue())
 
 
 
 @custom_code.route('/get_help')
 @crossdomain(origin='*')
-def get_help():
+def get_video():
 
 	#Sort Data
 	data = dict(request.args)
@@ -127,69 +123,18 @@ def get_help():
 	return jsonify(result={"status": 200})
 
 
-@custom_code.route('/finish_trial')
-@crossdomain(origin='*')
-def finish_trial(): 
-	data = dict(request.args)
-	key = data['undefined'][0]
-	useCoach = data['undefined'][1]
-
-	if not (key in CumData):
-		CumData[key] = [CurrentData[key]]
-		Coaches[key] = RobotCont()
-	else:
-		CumData[key].append(CurrentData[key])
-
-	if(useCoach == 'true'):
-		adj_costs = CurrentData[key][2]
-		IPython.embed()
-		if(len(adj_costs) == 0):
-			CurrentData[key] = [[],[],[]]
-			fdback = Coaches[key].batchFeedBack()
-		else:
-			adj_costs.pop(0)
-			costs = np.asarray(adj_costs)
-			states = np.asarray(CurrentData[key][0])
-			controls = np.asarray(CurrentData[key][1])
-			Coaches[key].updateQ(costs,states,controls)
-			fdback = Coaches[key].batchFeedBack()
-			CurrentData[key] = [[],[],[]]
-	
-		return jsonify(result = {"status":200}, items =fdback)
-	CurrentData[key] = [[],[],[]]
-	return jsonify(result = {"status":200}, items = [])
-
-	
-@custom_code.route('/get_stuff')
-def get_stuff(): 
-
-	#fdbback = [[np.zeros(2),np.zeros(2)],[np.zeros(2),np.zeros(2)]]
-	
-	c = np.zeros(2).tolist()
-	fdback = [[c,c],[c,c]]
 	
 
-	return jsonify(user= "hi",result={"status": 200},items=fdback)
-
-
-
-@custom_code.route('/save_data')
-@crossdomain(origin='*')
-def save_data():
-	responses = dict(request.args)
-	key = responses['undefined'][0]
-	condition = responses['undefined'][1]
-
-	total_data = [condition,responses,CumData[key]]
-	AllData[key] = total_data
-	pickle.dump(AllData,open('AllData.p','wb'))
-	return jsonify(result = {"status":200}, items = [])
-	#IPython.embed()
-	
 
 
 
 if __name__ == '__main__':
 	print "running"
-	AllData = pickle.load(open('AllData.p','rb'))
+	video_lst = []
+	for i in range(1254):
+		video = "Video_Example/img_+"i+".jpg"
+		img = cv2.imread(video)
+		video_lst.append(img)
+
+	IPython.embed()
 	custom_code.run(host='0.0.0.0')

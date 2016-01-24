@@ -23,6 +23,7 @@ console.log("CONDITIONS ",condition," ",counterbalance)
 // All pages to be loaded
 var pages = [
 	"instructions/instruct-1.html",
+	"instructions/instruct-1_cp.html",
 	"instructions/instruct-2.html",
 	"instructions/instruct-3.html",
 	"instructions/instruct-4.html",
@@ -35,6 +36,8 @@ var pages = [
 	"final_game.html",
 	"winter_game_ec.html",
 	"winter_game_rc.html",
+	"winter_game_q.html",
+	"cart_game.html",
 	"postquestionnaire.html",
 	"postquestionnaire_nc.html",
 	"coach_training.html"
@@ -52,6 +55,22 @@ var instructionPages_nc = [ // add as a list as many pages as you like
 	"winter_game_nc.html",
 	"instructions/instruct-5_nc.html",
 	"final_game.html"
+
+	
+];
+
+var instructionPages_CP = [ // add as a list as many pages as you like
+	"instructions/instruct-1_cp.html",
+	"cart_game.html",
+	
+
+	
+];
+
+var instructionPages_Q = [ // add as a list as many pages as you like
+	"instructions/instruct-1.html",
+	"winter_game_q.html",
+	
 
 	
 ];
@@ -203,7 +222,7 @@ var currentview;
  * Run Task
  ******************/
 $(window).load( function(){
-	condition = 2
+	condition = 3
 	if(condition == 0){
 		psiTurk.doInstructions(
 			instructionPages_nc, // a list of pages you want to display in sequence
@@ -216,9 +235,15 @@ $(window).load( function(){
 			function() { currentview = new Questionnaire(); } 
 		);
 	}
-	else{
+	else if(condition == 2){
 		psiTurk.doInstructions(
 			instructionPages_ec, // a list of pages you want to display in sequence
+			function() { currentview = new Questionnaire(); } 
+		);
+	}
+	else{
+		psiTurk.doInstructions(
+			instructionPages_CP,
 			function() { currentview = new Questionnaire(); } 
 		);
 	}

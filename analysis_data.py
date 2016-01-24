@@ -10,7 +10,6 @@ def calSubj(subjects,coach = False):
 	if(coach):
 		length = 14
 		all_rsp = np.zeros([len(subjects),length])
-		
 	else: 
 		length = 3
 		all_rsp = np.zeros([len(subjects),length])
@@ -18,12 +17,11 @@ def calSubj(subjects,coach = False):
 
 	for i in range(len(subjects)):
 		responses = subjects[i][1]['undefined']
-		
 		for t in range(length):
 			all_rsp[i,t] = float(responses[t+3])
 
 	for i in range(length):
-		score.append(np.sum(all_rsp[:,i])/16)
+		score.append(np.sum(all_rsp[:,i])/len(subjects))
 
 	print "Driving on the black ice was challenging in the beginning. ", score[0]
 	print "Driving on the black ice was challenging at the end. ", score[1]
@@ -104,7 +102,7 @@ def getPerfLearning(subjects,rm_lazy=False):
 				
 				costs = costFunction(subjects[j][2][i][1])
 				if(i > 1):
-					if(costs == 120 and rm_lazy):
+					if(j>15 and rm_lazy):
 						costs = 0
 						adpt_missing[i-1] += 1
 					
@@ -114,14 +112,14 @@ def getPerfLearning(subjects,rm_lazy=False):
 	for i in range(5):
 		sum_perf = np.sum(perfs[:,i])
 		x = perfs[:,i]
-		error_perfs.append(np.std(x[x!=0])/4)
+		error_perfs.append(np.std(x[x!=0])/5.65)
 		avg_perfs.append(sum_perf/(num_subjs-missing - adpt_missing[i]))
 	
 
 	
 	return avg_perfs, error_perfs
 
-def getPerfLearned(subjects):
+def getPerfLearned(subjects,rm_lazy=False):
 	if(len(subjects) == 0):
 		return -1
 
@@ -137,9 +135,9 @@ def getPerfLearned(subjects):
 			missing += 1
 		else:
 			costs = costFunction(subjects[j][2][6][1])
-			# if(costs == 120):
-			# 	costs = 0
-			# 	adpt_missing += 1
+			if(j> 15 and rm_lazy):
+				costs = 0
+				adpt_missing += 1
 			
 			perfs[j] = costs
 
@@ -153,7 +151,7 @@ def getPerfLearned(subjects):
 
 if __name__ == '__main__':
 
-	AllData = pickle.load(open('AllData.p','rb'))
+	AllData = pickle.load(open('AllData_1_14_16.p','rb'))
 	
 	x = [1,2,3,4,5]
 	#First sort by conditons 
@@ -184,19 +182,29 @@ if __name__ == '__main__':
 	plt.errorbar(x,no_coach_l,yerr = error_no,linewidth=3.0)
 	plt.errorbar(x,learning_coach_l, yerr = error_learning,linewidth=3.0)
 	plt.errorbar(x,expert_coach_l, yerr = error_expert,linewidth=3.0)
+	q_l = [97, 80.0, 72.200000000000003, 65.799999999999997, 66.399999999999999]
+	error_q = [2.8, 0.1, 0.5, 0.2, 0.14]
 
+	# qh_l = [118, 115, 116, 110, 107]
+	# error_qh = [3.2, 0.2, 1.0, 0.5, 0.34]
+
+	qq_l = [114, 112, 101, 115, 103]
+	error_qq = [4.2, 4.3, 3.1, 5.2, 4.14]
+	plt.errorbar(x,q_l, yerr = error_q,linewidth=3.0)
+	#plt.errorbar(x,qh_l, yerr = error_qh,linewidth=3.0)
+	plt.errorbar(x,qq_l, yerr = error_qq,linewidth=3.0)
 	plt.ylabel('Cost Incurred')
 	plt.xlabel('Trials')
-	names = ['No Coach','Learning Coah','Expert Coach']
-	plt.legend(names,loc='upper right')
+	names = ['No Coach','Learning Coah','Expert Coach','Q', 'Q_H']
+	plt.legend(names,loc='lower left')
 
 
-	# plt.show()
+	plt.show()
 
 	print "-----------AFTER LEARNING-----------"
 	print "Average Cost w/ No ",getPerfLearned(no_coach)
 	print "Average Cost w/ Learning Robot ",getPerfLearned(learning_coach)
-	print "Average Cost w/ Expert ",getPerfLearned(expert_coach)
+	print "Average Cost w/ Expert ",getPerfLearned(expert_coach,rm_lazy = True)
 
 
 
